@@ -1,0 +1,23 @@
+{
+  "name": "801-g2",
+  "version": "1.0.0",
+  "description": "Instrucciones para realizar registros en la base de datos:",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonardoAbanto/801-G2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeonardoAbanto/801-G2/issues"
+  },
+  "homepage": "https://github.com/LeonardoAbanto/801-G2#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  }
+}
