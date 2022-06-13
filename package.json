@@ -18,6 +18,8 @@
   "homepage": "https://github.com/LeonardoAbanto/801-G2#readme",
   "dependencies": {
     "ejs": "^3.1.8",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "md5": "^2.3.0",
+    "sqlite3": "^5.0.8"
   }
 }
