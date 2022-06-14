@@ -31,11 +31,8 @@ const queryUsuario = async(uID) => {
 }
 
 async function getUsuario(uID){
-    const usuario = await queryUsuario(uID)//.then(val  => console.log(val))
+    const usuario = await queryUsuario(uID)
     return usuario
 }
-
-getUsuario("20180004")
-
 
 module.exports = {getUsuario, getUsuarios} 
