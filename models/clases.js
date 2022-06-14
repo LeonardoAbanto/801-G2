@@ -41,7 +41,4 @@ class Oferta{
 
 }
 
-var usuario = new Usuario(1,1,1,1,1,1,1);
-console.log(usuario.nombres)
-
 module.exports = {Usuario, Publicación, Oferta}
