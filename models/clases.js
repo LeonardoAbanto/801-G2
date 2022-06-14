@@ -1,3 +1,4 @@
+/*
 class Usuario{
 
     constructor(id, tipo, nombre, apellidos, correo, contraseña, especialidad) {
@@ -42,3 +43,5 @@ class Oferta{
 }
 
 module.exports = {Usuario, Publicación, Oferta}
+
+*/
