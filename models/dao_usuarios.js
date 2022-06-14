@@ -35,3 +35,5 @@ async function getUsuario(uID){
 }
 
 module.exports = {getUsuario, getUsuarios} 
+
+//test xd
