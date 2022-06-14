@@ -26,21 +26,6 @@
     font-size: 18px;
 }
 
-input[type="radio"]{
-    background: #f0f0f0;
-    width: 0px;
-    margin: 0px;
-  }
-
-#login-box .form .item label {
-
-    color: white;
-    margin: 0px;
-    padding: 0px;
-    text-align: right;
-}
-
-
 #login-box button {
     border: 0;
     width: 150px;
