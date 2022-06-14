@@ -5,7 +5,7 @@ const path = require('path');
 const port = 3000; //puerto
 const bodyParser = require('body-parser')      //para formularios       
 
-const {Usuario, Publicación, Oferta} = require ('./models/clases.js')
+const {Usuario} = require("./models/Usuario.js")
 const {getUsuario, getUsuarios} = require("./models/dao_usuarios.js")
 
 app.use(express.static(path.join(__dirname, 'assets'))) // configurar archivos estaticos
@@ -81,6 +81,11 @@ app.get('/register', (req, res) => {
         rol: req.session.rol
     })
 })
+app.post('/registro', async (req,res) => {
+    usuarioNuevo = new Usuario(req.body.username,req.body.rol,req.body.name,req.body.surname,req.body.email,req.body.password)
+})
+
+
 
 //iniciar servidor
 app.listen(port, () => {            

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles/Registro.css">
 </head>
 <body>
-    <form action="#" method="POST">
+    <form action="/registro" method="POST">
         <div id="login-box">
             <h1>Registro</h1>
 
@@ -18,22 +18,27 @@
 
                 <div class="item">
                     <p id="title">Ingrese sus nombres:</p>
-                    <input type="text" placeholder="Nombres" name="username">
+                    <input type="text" placeholder="Nombres" name="name">
                 </div>
 
                 <div class="item">
                     <p id="title">Ingrese sus apellidos:</p>
-                    <input type="text" placeholder="Apellidos" name="username">
+                    <input type="text" placeholder="Apellidos" name="surname">
+                </div>
+
+                <div class="item">
+                    <p id="title">Seleccione rol</p>
+                    <label>
+                        <input type="radio" name="rol" id="Estudiante" value="Estudiante">Estudiante
+                    </label>
+                    <label>
+                        <input type="radio" name="rol" id="Empleador" value="Empleador">Empleador
+                    </label>
                 </div>
 
                 <div class="item">
                     <p id="title">Ingrese su correo electrónico:</p>
-                    <input type="text" placeholder="Correo electrónico" name="username">
-                </div>
-
-                <div class="item">
-                    <p id="title">Ingrese su celular:</p>
-                    <input type="text" placeholder="Número de celular" name="username">
+                    <input type="text" placeholder="Correo electrónico" name="email">
                 </div>
 
                 <div class="item">
@@ -43,7 +48,7 @@
 
                 <div class="item">
                     <p id="title">Vuelva a ingresar su contraseña:</p>
-                    <input type="password" placeholder="Repita su contraseña" name="password">
+                    <input type="password" placeholder="Repita su contraseña" name="passwordrepeat">
                 </div>
             </div>
             
