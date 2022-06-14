@@ -26,6 +26,12 @@
     font-size: 18px;
 }
 
+label{
+
+    color:rgb(255, 255, 255);
+
+}
+
 #login-box button {
     border: 0;
     width: 150px;
