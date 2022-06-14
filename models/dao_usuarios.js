@@ -1,5 +1,4 @@
 var sqlite3 = require('sqlite3').verbose();
-const {Usuario, Publicación, Oferta} = require ('./clases.js')
 var db = new sqlite3.Database('database.sqlite');
 
 const getUsuarios = async () => {
