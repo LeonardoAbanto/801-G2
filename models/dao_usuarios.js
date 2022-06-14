@@ -1,7 +1,9 @@
 var sqlite3 = require('sqlite3').verbose();
+const {Usuario, Publicación, Oferta} = require ('./clases.js')
+var db = new sqlite3.Database('database.sqlite');
 
 const getUsuarios = async () => {
-    var db = new sqlite3.Database('./database.sqlite');
+    var db = new sqlite3.Database('database.sqlite');
     db.serialize(function() {
       
         db.each('SELECT id AS id_usuario, nombres, apellidos, tipo as rol FROM Usuario', function(err, user) {
@@ -11,16 +13,29 @@ const getUsuarios = async () => {
     db.close();
 }
 
-const getUsuario = async (uID) => {
-    var db = new sqlite3.Database('./database.sqlite');
-    db.serialize(function() {
-        db.each("SELECT id AS id_usuario, nombres, apellidos, tipo as rol FROM Usuario WHERE id= (?)",uID,function(err,user){
-            console.log(user.nombres);
-        });
-    });
-    db.close();
+const queryUsuario = async(uID) => {
+
+    let usuario;
+    usuario = await new Promise(function (resolve,reject){
+        var usuario;
+        db.get("SELECT id AS id_usuario, nombres, apellidos, tipo as rol, correo, contraseña, especialidad FROM Usuario WHERE id=(?)", uID, async function (err, rows) {
+            usuario = rows
+            if (err){
+                console.log("error")
+                reject(new Error("wtf"));
+            }else{
+                resolve (usuario);
+            }
+    })})
+    return usuario
 }
 
-getUsuarios();
-getUsuario("20180004");
-getUsuario("20180235");
+async function getUsuario(uID){
+    const usuario = await queryUsuario(uID)//.then(val  => console.log(val))
+    return usuario
+}
+
+getUsuario("20180004")
+
+
+module.exports = {getUsuario, getUsuarios} 
