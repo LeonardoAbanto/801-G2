@@ -17,13 +17,19 @@
     border-bottom: 5px solid white; 
     font-size: 18px;
     background: #ffffff00;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 5px 10px;
 }
 
 #login-box .form .item i {
     color: white;
     font-size: 18px;
+}
+
+label{
+
+    color:rgb(255, 255, 255);
+
 }
 
 #login-box button {
