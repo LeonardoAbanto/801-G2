@@ -3,25 +3,27 @@ var db = new sqlite3.Database('database.sqlite');
 
 const {Publicacion} = require("./Publicacion.js")
 
-const queryPublicaciones = async() => {
+const queryPublicaciones = async () => {
 
-    let publis;
-    publis = await new Promise(function (resolve,reject){
-        let publis = [];
-        let i=0;
-        db.all('SELECT id, texto, fecha, id_usuario FROM Publicacion', function(err, row) {
-            publis[i]=row
-            i+=1; 
-        })
-        console.log(i)
-        console.log(publis)
-        resolve(publis)
-        })
+    publis = await new Promise(function(resolve,reject){
+        db.all('SELECT id, texto, fecha, id_usuario FROM Publicacion', function(err, rows){
+        if (err){
+            reject (err)
+            return
+        }
+        resolve(rows)
+    })
+    })
+    return publis
 }
 
-async function test() {
+async function getPublicaciones() {
     publis = await queryPublicaciones()
-    console.log(publis+"xd")
 }
 
-test()
+const crearPublicacion = async(publicacion) => {
+    var stmt = db.prepare('INSERT INTO Publicacion (texto, fecha, id_usuario) VALUES (?,?,?)');
+    stmt.run([publicacion.texto,publicacion.fecha,publicacion.id_usuario])
+}
+
+module.exports = {getPublicaciones, crearPublicacion} 
