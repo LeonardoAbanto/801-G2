@@ -1,6 +1,8 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('database.sqlite');
 
+const {Usuario} = require("./Usuario.js")
+
 const getUsuarios = async () => {
     var db = new sqlite3.Database('database.sqlite');
     db.serialize(function() {
@@ -34,5 +36,10 @@ async function getUsuario(uID){
     return usuario
 }
 
-module.exports = {getUsuario, getUsuarios} 
+const crearUsuario = async(usuario) => {
+    var stmt = db.prepare('INSERT INTO Usuario(id, tipo, nombres, apellidos, correo, contraseña) VALUES (?,?,?,?,?,?)');
+    stmt.run([usuario.id,usuario.tipo,usuario.nombres,usuario.apellidos,usuario.correo,usuario.contraseña])
+}
+
+module.exports = {crearUsuario, getUsuario, getUsuarios} 
 

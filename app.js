@@ -6,7 +6,7 @@ const port = 3000; //puerto
 const bodyParser = require('body-parser')      //para formularios       
 
 const {Usuario} = require("./models/Usuario.js")
-const {getUsuario, getUsuarios} = require("./models/dao_usuarios.js")
+const {crearUsuario, getUsuario, getUsuarios} = require("./models/dao_usuarios.js")
 
 app.use(express.static(path.join(__dirname, 'assets'))) // configurar archivos estaticos
 app.set('view engine', 'ejs') // configurar ejs template
@@ -33,7 +33,6 @@ app.get('/', (req, res) => {
 
 //pagina login
 app.get('/login', (req, res) => {
-
     res.render('login', {
         rol: req.session.rol
     })
@@ -46,7 +45,6 @@ app.post('/login', async (req,res) =>{
         console.log(usuario.nombres)
         if(usuario.contraseña==password){
             console.log("login exitoso")
-            console.log(usuario)
             req.session.usuario = usuario
             req.session.rol=usuario.rol
             res.redirect('/')        
@@ -59,17 +57,6 @@ app.post('/login', async (req,res) =>{
         console.log("errorxdxdxd")
         res.redirect('/')
     }
-    // if(usuario.contraseña==password){
-    //     console.log("login exitoso")
-    //     res.redirect('/')
-    // }else{
-    //     console.log(usuario.contraseña+' '+password)
-    //     console.log("login fallido")
-    //     res.redirect('/')
-    //     console.log(usuario.contraseña)
-    //     console.log(usuario.nombres)
-    // }
-    //continuar
 })
 
 
@@ -81,8 +68,16 @@ app.get('/register', (req, res) => {
         rol: req.session.rol
     })
 })
-app.post('/registro', async (req,res) => {
-    usuarioNuevo = new Usuario(req.body.username,req.body.rol,req.body.name,req.body.surname,req.body.email,req.body.password)
+app.post('/register', (req,res) => {
+    if(req.body.password==req.body.passwordrepeat){
+        usuarioNuevo = new Usuario(req.body.username,req.body.rol,req.body.name,req.body.surname,req.body.email,req.body.password)
+        console.log(usuarioNuevo)
+        crearUsuario(usuarioNuevo)
+        res.redirect("/login")
+    }else{
+        console.log("Error las contraseñas no son iguales")
+        res.redirect("/register")
+    }
 })
 
 
