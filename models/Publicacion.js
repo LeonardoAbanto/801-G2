@@ -1,4 +1,4 @@
-class Publicación{
+class Publicacion{
 
     constructor(id, texto, fecha, id_usuario) {
         
@@ -11,4 +11,4 @@ class Publicación{
 
 }
 
-module.exports = {Publicación}
+module.exports = {Publicacion}

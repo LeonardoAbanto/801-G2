@@ -23,7 +23,7 @@ const queryUsuario = async(uID) => {
             usuario = rows
             if (err){
                 console.log("error")
-                reject(new Error("wtf"));
+                reject(new Error("error"));
             }else{
                 resolve (usuario);
             }
