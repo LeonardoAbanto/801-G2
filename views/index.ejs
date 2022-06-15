@@ -32,8 +32,14 @@
         <!-- columna de publicaciones -->
         <div class="col-8">
           <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+          <div class="mt-2 mb-2">
+            <form action="/publicar" method="POST">
+              <input type="text" class="form-control mb-2" name="texto" placeholder="Publica algo">
+              <button type="submit" class="btn btn-primary mb-2">Publicar</button>
+            </form>
+          </div>
           <% publis.forEach((p) => { %>
-            <div class="publicacion container">
+            <div class="publicacion container mb-4">
               <div class="usuario"><%= p.texto %></div>
               <div class="usuario">publicado por <%= p.id_usuario %></div>
               <div class="fecha">fecha: <%= p.fecha %></div>
