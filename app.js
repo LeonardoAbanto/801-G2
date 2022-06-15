@@ -26,9 +26,13 @@ app.use(session({
 //pagina principal
 app.get('/', (req, res) => {
     console.log(req.session.rol)
-    res.render('index', {
-        rol: req.session.rol
-    })
+    if(req.session.rol==null){
+        res.redirect('/login')
+    }else{
+        res.render('index', {
+            rol: req.session.rol
+        })
+    }
 })
 
 //pagina login
@@ -58,7 +62,15 @@ app.post('/login', async (req,res) =>{
     }
 })
 
-
+//pagina logout
+app.get('/logout', (req, res) =>{
+    if(req.session.rol==null){
+        res.redirect('/login')
+    }else{
+        req.session.rol=null;
+        res.redirect('/login')
+    }
+})
 
 
 //pagina registro
