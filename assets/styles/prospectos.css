@@ -1,0 +1,67 @@
+.button {
+    background-color: #555555;
+    font-size: 14px;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.button1 {
+    background-color: #e7e7e7;
+    font-size: 12px;
+    color: black;
+    padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.zonaSuperior{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border: 3px solid green;
+    text-align: center;
+}
+
+#izquierda{
+    position: absolute;
+    left: 10px;
+}
+
+#centro{
+    width: 50%;
+    margin: 0 auto;
+
+}
+
+#derecha{
+    position: absolute;
+    right: 1px;
+}
+
+.zonaIzquierda{
+    margin: auto;
+    width: 25%;
+    padding: 10px;
+    border: 3px solid green;
+    text-align: center;
+}
+
+.zonaCentral{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border: 3px solid green;
+}
+
+.zonaDerecha{
+    margin: auto;
+    width: 25%;
+    padding: 10px;
+    border: 3px solid green;
+    text-align: center;
+}
