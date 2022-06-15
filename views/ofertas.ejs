@@ -41,6 +41,7 @@
               <div class="fecha">fecha: <%= p.fecha %></div>
               <div class="puesto">fecha: <%= p.puesto %></div>
               <div class="nombre_empresa">nombre empresa: <%= p.nombre_empresa %></div>
+              <% if(rol=="admin") { %> <button class="btn btn-primary mb-2">Eliminar</button><% } %>
             </div>
           <% }) %>
         </div>

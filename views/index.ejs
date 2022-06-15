@@ -26,10 +26,10 @@
       <div class="row">
         <!-- columna de usuario -->
         <div class="col-4">
-          <p><%= usuario.id_usuario %></p>
-          <p><%= usuario.nombres %> <%= usuario.apellidos %></p>
+          <img src="./media/UserPicture.png" alt="img" class="img-thumbnail">
+          <p>Bienvenido, <%= usuario.nombres %> <%= usuario.apellidos %></p>
+          <p>Usuario: <%= usuario.id_usuario %></p>
           <p>Rol: <%= rol %></p>
-          
         </div>
         <!-- columna de publicaciones -->
         <div class="col-8">
@@ -45,6 +45,7 @@
               <div class="usuario"><%= p.texto %></div>
               <div class="usuario">publicado por <%= p.id_usuario %></div>
               <div class="fecha">fecha: <%= p.fecha %></div>
+              <% if(rol=="admin") { %> <button class="btn btn-primary mt-2 mb-2">Eliminar</button><% } %>
             </div>
           <% }) %>
         </div>
