@@ -19,6 +19,7 @@ const queryOfertas = async () => {
 
 async function getOfertas() {
     ofertas = await queryOfertas()
+    ofertas.reverse()
     return ofertas
 }
 

@@ -19,7 +19,7 @@ const queryPublicaciones = async () => {
 
 async function getPublicaciones() {
     publis = await queryPublicaciones()
-    
+    publis.reverse()
     return publis
 }
 
