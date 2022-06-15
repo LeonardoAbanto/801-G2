@@ -29,17 +29,23 @@ app.get('/', (req, res) => {
     if(req.session.rol==null){
         res.redirect('/login')
     }else{
+        console.log(req.session.usuario)
         res.render('index', {
-            rol: req.session.rol
+            rol: req.session.rol,
+            usuario: req.session.usuario
         })
     }
 })
 
 //pagina login
 app.get('/login', (req, res) => {
-    res.render('login', {
-        rol: req.session.rol
-    })
+    if(req.session.rol==null){
+        res.render('login', {
+            rol: req.session.rol
+        })
+    }else{
+        res.redirect('/')
+    }
 })
 app.post('/login', async (req,res) =>{
     const username = req.body.username
@@ -68,6 +74,7 @@ app.get('/logout', (req, res) =>{
         res.redirect('/login')
     }else{
         req.session.rol=null;
+        req.session.usuario=null;
         res.redirect('/login')
     }
 })
@@ -75,9 +82,13 @@ app.get('/logout', (req, res) =>{
 
 //pagina registro
 app.get('/register', (req, res) => {
-    res.render('registro', {
-        rol: req.session.rol
-    })
+    if(req.session.rol==null){
+        res.render('registro', {
+            rol: req.session.rol
+        })
+    }else{
+        res.redirect('/')
+    }
 })
 app.post('/register', (req,res) => {
     if(req.body.password==req.body.passwordrepeat){

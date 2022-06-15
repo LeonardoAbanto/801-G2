@@ -1,0 +1,23 @@
+.box{
+    border-color: black;
+    border-style: solid;
+}
+
+#body{
+    background-color: #f3f2ef
+}
+
+#box{
+    background-color: rgb(255, 255, 255);
+}
+
+#header{
+    background-color: rgb(255, 255, 255);
+}
+
+.publicacion{
+    margin-top:2px;
+    border-color:black;
+    border-style:solid;
+    margin-bottom: 2px;
+}
