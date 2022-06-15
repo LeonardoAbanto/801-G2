@@ -14,8 +14,10 @@
       </div>
       <div class="col-6 d-flex justify-content-end">
         <a href="/" type="button" class="btn btn-secondary ml-2">Inicio</a>
-        <a href="/ofertas" type="button" class="btn btn-secondary ml-2">Ofertas Laborales</a>
-        <a href="" type="button" class="btn btn-secondary ml-2">Subir CV</a>
+        <% if(rol!="Empleador") { %><a href="/ofertas" type="button" class="btn btn-secondary ml-2">Ofertas Laborales</a><% } %>
+        <% if(rol=="Estudiante") { %><a href="/subircv" type="button" class="btn btn-secondary ml-2">Subir CV</a><% } %>
+        <% if(rol=="Empleador") { %><a href="" type="button" class="btn btn-secondary ml-2">Prospectos</a><% } %>
+        <% if(rol=="Empleador") { %><a href="" type="button" class="btn btn-secondary ml-2">Subir Oferta</a><% } %>        
         <a href="/logout" class="btn btn-secondary ml-2">Logout</a>
       </div>
     </header>

@@ -70,6 +70,18 @@ app.get('/ofertas', async (req, res) => {
     }
 })
 
+//pagina subir cv
+app.get('/subircv', async (req,res) => {
+    if(req.session.rol==null){
+        res.redirect('/')
+    }else{
+        res.render('subircv', {
+            rol: req.session.rol,
+            usuario: req.session.usuario,
+        })
+    }
+})
+
 //pagina login
 app.get('/login', (req, res) => {
     if(req.session.rol==null){
