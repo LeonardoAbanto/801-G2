@@ -26,21 +26,21 @@
       <div class="row">
         <!-- columna de usuario -->
         <div class="col-4">
-          <p><%= usuario.id_usuario %></p>
-          <p><%= usuario.nombres %> <%= usuario.apellidos %></p>
-          <p>Rol: <%= rol %></p>
-          
-        </div>
+            <img src="./media/UserPicture.png" alt="img" class="img-thumbnail">
+            <h4>Bienvenido, <%= usuario.nombres %> <%= usuario.apellidos %></h4>
+            <h6>Usuario: <%= usuario.id_usuario %></h6>
+            <h6>Rol: <%= rol %></h6>
+          </div>
         <!-- columna de ofertas -->
         <div class="col-8">
-          <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+          <h3>Ofertas vigentes</h3>
           <% publis.forEach((p) => { %>
             <div class="publicacion container mb-4">
-              <div class="usuario"><%= p.texto %></div>
-              <div class="usuario">publicado por <%= p.id_usuario %></div>
-              <div class="fecha">fecha: <%= p.fecha %></div>
-              <div class="puesto">fecha: <%= p.puesto %></div>
-              <div class="nombre_empresa">nombre empresa: <%= p.nombre_empresa %></div>
+              <div class="texto"><h5><%= p.texto %></h5></div>
+              <div hidden class="id_publicador"><%= p.id_usuario %></div>
+              <div class="fecha"><h6>Publicado: <%= p.fecha %></h6></div>
+              <div class="puesto"><h6>Puesto de trabajo: <%= p.puesto %></h6></div>
+              <div class="nombre_empresa"><h6>Publicado por: <%= p.nombre_empresa %></h6></div>
               <% if(rol=="admin") { %> <button class="btn btn-primary mb-2">Eliminar</button><% } %>
             </div>
           <% }) %>

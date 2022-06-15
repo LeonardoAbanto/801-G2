@@ -27,13 +27,13 @@
         <!-- columna de usuario -->
         <div class="col-4">
           <img src="./media/UserPicture.png" alt="img" class="img-thumbnail">
-          <p>Bienvenido, <%= usuario.nombres %> <%= usuario.apellidos %></p>
-          <p>Usuario: <%= usuario.id_usuario %></p>
-          <p>Rol: <%= rol %></p>
+          <h4>Bienvenido, <%= usuario.nombres %> <%= usuario.apellidos %></h4>
+          <h6>Usuario: <%= usuario.id_usuario %></h6>
+          <h6>Rol: <%= rol %></h6>
         </div>
         <!-- columna de publicaciones -->
         <div class="col-8">
-          <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+          <h5>¿Cómo te sientes?</h5>
           <div class="mt-2 mb-2">
             <form action="/publicar" method="POST">
               <input type="text" class="form-control mb-2" name="texto" placeholder="Publica algo">
@@ -42,9 +42,9 @@
           </div>
           <% publis.forEach((p) => { %>
             <div class="publicacion container mb-4">
-              <div class="usuario"><%= p.texto %></div>
-              <div class="usuario">publicado por <%= p.id_usuario %></div>
-              <div class="fecha">fecha: <%= p.fecha %></div>
+              <div class="texto"><h5><%= p.texto %></h5></div>
+              <div class="usuario"><h6>Publicado por <%= p.id_usuario %></h6></div>
+              <div class="fecha"><h6>Fecha de publicación: <%= p.fecha %></h6></div>
               <% if(rol=="admin") { %> <button class="btn btn-primary mt-2 mb-2">Eliminar</button><% } %>
             </div>
           <% }) %>

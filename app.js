@@ -47,7 +47,7 @@ app.get('/', async (req, res) => {
 app.post('/publicar', async (req, res) =>{
     console.log(req.body.texto)
     try{
-        let publicacion = new Publicacion(null,req.body.texto,1,req.session.usuario.id_usuario)
+        let publicacion = new Publicacion(null,req.body.texto,"15/06/2022",req.session.usuario.id_usuario)
         await crearPublicacion(publicacion)
         res.redirect('/')
     }catch (err){
