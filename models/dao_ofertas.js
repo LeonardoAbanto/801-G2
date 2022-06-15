@@ -18,7 +18,8 @@ const queryOfertas = async () => {
 }
 
 async function getOfertas() {
-    publis = await queryOfertas()
+    ofertas = await queryOfertas()
+    return ofertas
 }
 
 const crearOferta = async(oferta) => {

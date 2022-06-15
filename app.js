@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')      //para formularios
 
 const {Usuario} = require("./models/Usuario.js")
 const {crearUsuario, getUsuario, getUsuarios} = require("./models/dao_usuarios.js")
+const {getPublicaciones} = require("./models/dao_publicaciones.js")
 
 app.use(express.static(path.join(__dirname, 'assets'))) // configurar archivos estaticos
 app.set('view engine', 'ejs') // configurar ejs template
@@ -24,15 +25,18 @@ app.use(session({
 
 
 //pagina principal
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     console.log(req.session.rol)
     if(req.session.rol==null){
         res.redirect('/login')
     }else{
         console.log(req.session.usuario)
+        publicaciones = await getPublicaciones()
+        console.log(publicaciones)
         res.render('index', {
             rol: req.session.rol,
-            usuario: req.session.usuario
+            usuario: req.session.usuario,
+            publis: publicaciones
         })
     }
 })

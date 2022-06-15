@@ -19,6 +19,7 @@ const queryPublicaciones = async () => {
 
 async function getPublicaciones() {
     publis = await queryPublicaciones()
+    return publis
 }
 
 const crearPublicacion = async(publicacion) => {
