@@ -55,6 +55,8 @@ app.post('/publicar', async (req, res) =>{
     }
 })
 
+
+
 //pagina de ofertas
 app.get('/ofertas', async (req, res) => {
     console.log(req.session.usuario)
@@ -155,6 +157,22 @@ app.post('/register', (req,res) => {
         console.log("las contraseñas no son iguales")
         res.redirect("/register")
     }
+})
+
+//falta adaptar css
+
+//pagina prospectos
+app.get('/prospectos', async (req,res) =>{
+    res.render('prospectos',{
+        rol: req.session.rol
+    })
+})
+
+//pagina aplicar
+app.get('/aplicar', async (req,res) =>{
+    res.render('aplicar',{
+        rol: req.session.rol
+    })
 })
 
 
