@@ -5,10 +5,13 @@ const path = require('path');
 const port = 3000; //puerto
 const bodyParser = require('body-parser')      //para formularios       
 
+const {Oferta} = require("./models/Oferta.js")
 const {Publicacion} = require("./models/Publicacion.js")
 const {Usuario} = require("./models/Usuario.js")
-const {crearUsuario, getUsuario, getUsuarios} = require("./models/dao_usuarios.js")
+const {crearUsuario, getUsuario} = require("./models/dao_usuarios.js")
 const {getPublicaciones, crearPublicacion} = require("./models/dao_publicaciones.js")
+const {getOfertas} = require("./models/dao_ofertas.js")
+
 
 app.use(express.static(path.join(__dirname, 'assets'))) // configurar archivos estaticos
 app.set('view engine', 'ejs') // configurar ejs template
@@ -49,6 +52,21 @@ app.post('/publicar', async (req, res) =>{
         res.redirect('/')
     }catch (err){
         console.log(err)
+    }
+})
+
+//pagina de ofertas
+app.get('/ofertas', async (req, res) => {
+    console.log(req.session.usuario)
+    if(req.session.rol==null){
+        res.redirect('/login')
+    }else{
+        ofertas = await getOfertas()
+        res.render('ofertas', {
+            rol: req.session.rol,
+            usuario: req.session.usuario,
+            publis: ofertas
+        })
     }
 })
 
