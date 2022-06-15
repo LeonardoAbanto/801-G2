@@ -54,12 +54,17 @@ app.post('/login', async (req,res) =>{
         let usuario = await getUsuario(username)
         console.log(usuario.nombres)
         if(usuario.contraseña==password){
-            console.log("login exitoso")
-            req.session.usuario = usuario
-            req.session.rol=usuario.rol
-            res.redirect('/')        
+            try{
+                console.log("login exitoso")
+                req.session.usuario = usuario
+                req.session.rol=usuario.rol
+                res.redirect('/')
+            }catch (err){
+                console.log("error desconocido")
+                res.redirect('/')
+            }        
         }else{
-            console.log("login fallido")
+            console.log("contraseña o usuario incorrecto")
             res.redirect('/')
         }
     // }
@@ -92,12 +97,17 @@ app.get('/register', (req, res) => {
 })
 app.post('/register', (req,res) => {
     if(req.body.password==req.body.passwordrepeat){
-        usuarioNuevo = new Usuario(req.body.username,req.body.rol,req.body.name,req.body.surname,req.body.email,req.body.password)
-        console.log(usuarioNuevo)
-        crearUsuario(usuarioNuevo)
-        res.redirect("/login")
+        try{
+            usuarioNuevo = new Usuario(req.body.username,req.body.rol,req.body.name,req.body.surname,req.body.email,req.body.password)
+            console.log(usuarioNuevo)
+            crearUsuario(usuarioNuevo)
+            res.redirect("/login")
+        }catch (err){
+            console.log("error desconocido")
+            res.redirect("/register")
+        }
     }else{
-        console.log("Error las contraseñas no son iguales")
+        console.log("las contraseñas no son iguales")
         res.redirect("/register")
     }
 })
