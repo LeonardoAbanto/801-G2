@@ -10,7 +10,7 @@ const {Publicacion} = require("./models/Publicacion.js")
 const {Usuario} = require("./models/Usuario.js")
 const {crearUsuario, getUsuario} = require("./models/dao_usuarios.js")
 const {getPublicaciones, crearPublicacion} = require("./models/dao_publicaciones.js")
-const {getOfertas} = require("./models/dao_ofertas.js")
+const {getOfertas, crearOferta} = require("./models/dao_ofertas.js")
 
 
 app.use(express.static(path.join(__dirname, 'assets'))) // configurar archivos estaticos
@@ -55,6 +55,19 @@ app.post('/publicar', async (req, res) =>{
     }
 })
 
+//subiroferta
+app.post('/subiroferta', async (req, res) =>{
+    console.log(req.body.texto)
+    try{
+        let oferta = new Oferta(null,"10/07/2022",req.body.nombre_empresa,req.body.texto,req.body.puesto,req.session.usuario.id_usuario)
+        await crearOferta(oferta)
+        res.redirect('/')
+    }catch (err){
+        console.log(err)
+    }
+})
+
+
 
 
 //pagina de ofertas
@@ -78,6 +91,18 @@ app.get('/subircv', async (req,res) => {
         res.redirect('/')
     }else{
         res.render('subircv', {
+            rol: req.session.rol,
+            usuario: req.session.usuario,
+        })
+    }
+})
+
+//pagina subir oferta
+app.get('/subiroferta', async (req,res) => {
+    if(req.session.rol!="Empleador"){
+        res.redirect('/')
+    }else{
+        res.render('subiroferta', {
             rol: req.session.rol,
             usuario: req.session.usuario,
         })
