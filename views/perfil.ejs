@@ -23,18 +23,22 @@
     </header>
     <!-- cuerpo -->
     <div class="container" id="box">
-      <div class="row">
-        <!-- columna de usuario -->
-        <div class="col-4">
-            <img src="./media/UserPicture.png" alt="img" class="img-thumbnail">
-            <h4>Bienvenido, <%= usuario.nombres %> <%= usuario.apellidos %></h4>
-            <h6>Usuario: <%= usuario.id_usuario %></h6>
-            <h6>Rol: <%= rol %></h6>
-        </div>
-        <!-- columna de subircv -->
-        <div class="col-8">
-          <p>aqui se deberia subir el cv</p>
-        </div>
+        <h2>Ver Perfil</h2>
+        <div class="row">
+            <!-- columna de foto -->
+            <div class="col-4">
+                <img src="../media/UserPicture.png" alt="img" class="img-thumbnail">
+                
+            </div>
+            <!-- columna de informacion -->
+            <div class="col-8">
+                <h4>Nombre del usuario:, <%= usuarioPerfil.nombres %> <%= usuarioPerfil.apellidos %></h4>
+                <h6>ID: <%= usuarioPerfil.id_usuario %></h6>
+                <h6>Rol: <%= usuarioPerfil.rol %></h6>
+                <% if(usuarioPerfil.especialidad!=null) { %> <h6>Especialidad: <%= usuarioPerfil.especialidad %></h6> <% } %>
+                <a href="/cv/<%=usuarioPerfil.id_usuario%>" type="button" class="btn btn-secondary ml-2">Ver CV</a>
+                <a href="/redes/<%=usuarioPerfil.id_usuario%>" type="button" class="btn btn-secondary ml-2">Ver Redes</a>
+            </div>
       </div>
     </div>
   </body>

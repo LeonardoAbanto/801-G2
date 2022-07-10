@@ -15,6 +15,7 @@
       <div class="col-6 d-flex justify-content-end">
         <a href="/" type="button" class="btn btn-secondary ml-2">Inicio</a>
         <% if(rol!="Empleador") { %><a href="/ofertas" type="button" class="btn btn-secondary ml-2">Ofertas Laborales</a><% } %>
+        <% if(rol=="Estudiante") { %><a href="/miperfil" type="button" class="btn btn-secondary ml-2">Editar Perfil</a><% } %>
         <% if(rol=="Empleador") { %><a href="" type="button" class="btn btn-secondary ml-2">Prospectos</a><% } %>
         <% if(rol=="Empleador") { %><a href="/subiroferta" type="button" class="btn btn-secondary ml-2">Subir Oferta</a><% } %>        
         <a href="/logout" class="btn btn-secondary ml-2">Logout</a>
@@ -30,15 +31,20 @@
             <h6>Usuario: <%= usuario.id_usuario %></h6>
             <h6>Rol: <%= rol %></h6>
         </div>
-        <!-- formulario de subir oferta -->
+        <!-- columna de subircv -->
         <div class="col-8">
-            <form action="/subiroferta" method="POST">
-                <h4>Subir nueva oferta</h4>
-                <input type="text" class="form-control mb-2" name="nombre_empresa" placeholder="Nombre de la empresa">
-                <input type="text" class="form-control mb-2" name="puesto" placeholder="Posición">
-                <input type="text" class="form-control mb-2" name="texto" placeholder="Descripción">
-                <button type="submit" class="btn btn-primary mb-2">Publicar</button>
-            </form>
+          <form action="/editarcv" method="POST">
+            <input type="text" class="form-control mb-2" name="cv" value="<%= usuario.cv %>">
+            <button type="submit" class="btn btn-primary mb-2">Editar CV</button>
+          </form>
+          <form action="/editarespecialidad" method="POST">
+            <input type="text" class="form-control mb-2" name="especialidad" value="<%= usuario.especialidad %>">
+            <button type="submit" class="btn btn-primary mb-2">Editar Especialidad</button>
+          </form>
+          <form action="/editarredes" method="POST">
+            <input type="text" class="form-control mb-2" name="redes" value="<%= usuario.redes %>">
+            <button type="submit" class="btn btn-primary mb-2">Editar Redes</button>
+          </form>
         </div>
       </div>
     </div>

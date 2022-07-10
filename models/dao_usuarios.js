@@ -19,7 +19,7 @@ const queryUsuario = async(uID) => {
     let usuario;
     usuario = await new Promise(function (resolve,reject){
         var usuario;
-        db.get("SELECT id AS id_usuario, nombres, apellidos, tipo as rol, correo, contraseña, especialidad FROM Usuario WHERE id=(?)", uID, async function (err, rows) {
+        db.get("SELECT id AS id_usuario, nombres, apellidos, tipo as rol, correo, contraseña, especialidad, cv, redes FROM Usuario WHERE id=(?)", uID, async function (err, rows) {
             usuario = rows
             if (err){
                 console.log("error")
@@ -41,5 +41,20 @@ const crearUsuario = async(usuario) => {
     stmt.run([usuario.id,usuario.tipo,usuario.nombres,usuario.apellidos,usuario.correo,usuario.contraseña])
 }
 
-module.exports = {crearUsuario, getUsuario, getUsuarios} 
+const editarCV = async(id, cv) => {
+    var stmt = db.prepare('UPDATE Usuario SET cv = ? WHERE id= ?');
+    stmt.run([cv, id])
+}
+
+const editarEspecialidad = async(id, especialidad) => {
+    var stmt = db.prepare('UPDATE Usuario SET especialidad = ? WHERE id= ?');
+    stmt.run([especialidad, id])
+}
+
+const editarRedes = async(id, redes) => {
+    var stmt = db.prepare('UPDATE Usuario SET redes = ? WHERE id= ?');
+    stmt.run([redes, id])
+}
+
+module.exports = {crearUsuario, getUsuario, getUsuarios, editarCV, editarEspecialidad, editarRedes} 
 

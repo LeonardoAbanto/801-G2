@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')      //para formularios
 const {Oferta} = require("./models/Oferta.js")
 const {Publicacion} = require("./models/Publicacion.js")
 const {Usuario} = require("./models/Usuario.js")
-const {crearUsuario, getUsuario} = require("./models/dao_usuarios.js")
+const {crearUsuario, getUsuario, editarCV, editarRedes, editarEspecialidad} = require("./models/dao_usuarios.js")
 const {getPublicaciones, crearPublicacion} = require("./models/dao_publicaciones.js")
 const {getOfertas, crearOferta} = require("./models/dao_ofertas.js")
 
@@ -67,8 +67,38 @@ app.post('/subiroferta', async (req, res) =>{
     }
 })
 
+//subir/editar cv
+app.post('/editarcv', async (req, res) =>{
+    try{
+        await editarCV(req.session.usuario.id_usuario,req.body.cv)
+        req.session.usuario = await getUsuario(req.session.usuario.id_usuario)
+        res.redirect('/miperfil')
+    }catch (err){
+        console.log(err)
+    }
+})
 
+//subir/editar especialidad
+app.post('/editarespecialidad', async (req, res) =>{
+    try{
+        await editarEspecialidad(req.session.usuario.id_usuario,req.body.especialidad)
+        req.session.usuario = await getUsuario(req.session.usuario.id_usuario)
+        res.redirect('/miperfil')
+    }catch (err){
+        console.log(err)
+    }
+})
 
+//subir/editar redes
+app.post('/editarredes', async (req, res) =>{
+    try{
+        await editarRedes(req.session.usuario.id_usuario,req.body.redes)
+        req.session.usuario = await getUsuario(req.session.usuario.id_usuario)
+        res.redirect('/miperfil')
+    }catch (err){
+        console.log(err)
+    }
+})
 
 //pagina de ofertas
 app.get('/ofertas', async (req, res) => {
@@ -85,12 +115,12 @@ app.get('/ofertas', async (req, res) => {
     }
 })
 
-//pagina subir cv
-app.get('/subircv', async (req,res) => {
-    if(req.session.rol==null){
+//pagina editar perfil
+app.get('/miperfil', async (req,res) => {
+    if(req.session.rol!="Estudiante"){
         res.redirect('/')
     }else{
-        res.render('subircv', {
+        res.render('miperfil', {
             rol: req.session.rol,
             usuario: req.session.usuario,
         })
@@ -105,6 +135,21 @@ app.get('/subiroferta', async (req,res) => {
         res.render('subiroferta', {
             rol: req.session.rol,
             usuario: req.session.usuario,
+        })
+    }
+})
+
+//pagina de perfil
+app.get('/perfil/:id', async (req,res) =>{
+    const uID = req.params.id;
+    const usuarioPer = await getUsuario(uID);
+    if(req.session.rol==null){
+        res.redirect('/')
+    }else{
+        res.render('perfil', {
+            rol: req.session.rol,
+            usuario: req.session.usuario,
+            usuarioPerfil: usuarioPer,
         })
     }
 })
