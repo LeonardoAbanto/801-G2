@@ -146,11 +146,34 @@ app.get('/perfil/:id', async (req,res) =>{
     if(req.session.rol==null){
         res.redirect('/')
     }else{
-        res.render('perfil', {
-            rol: req.session.rol,
-            usuario: req.session.usuario,
-            usuarioPerfil: usuarioPer,
-        })
+        if(usuarioPer != null){
+            res.render('perfil', {
+                rol: req.session.rol,
+                usuario: req.session.usuario,
+                usuarioPerfil: usuarioPer,
+            })
+        }else{
+            res.redirect('/')
+        }
+    }
+})
+
+//vercv
+app.get('/cv/:id', async (req,res) =>{
+    const uID = req.params.id;
+    const usuarioPer = await getUsuario(uID);
+    if(req.session.rol==null){
+        res.redirect('/')
+    }else{
+        if(usuarioPer != null){
+            res.render('cv', {
+                rol: req.session.rol,
+                usuario: req.session.usuario,
+                usuarioPerfil: usuarioPer,
+            })
+        }else{
+            res.redirect('/')
+        }
     }
 })
 
