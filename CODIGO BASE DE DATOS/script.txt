@@ -1,0 +1,32 @@
+CREATE TABLE "Oferta" (
+	"id"	INTEGER,
+	"fecha"	TEXT,
+	"nombre_empresa"	TEXT,
+	"texto"	TEXT,
+	"puesto"	TEXT,
+	"id_usuario"	INTEGER,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("id_usuario") REFERENCES "Usuario"("id")
+)
+
+CREATE TABLE "Publicacion" (
+	"id"	INTEGER,
+	"texto"	TEXT,
+	"fecha"	TEXT,
+	"id_usuario"	INTEGER,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("id_usuario") REFERENCES "Usuario"("id")
+)
+
+CREATE TABLE "Usuario" (
+	"id"	TEXT,
+	"tipo"	TEXT,
+	"nombres"	TEXT,
+	"apellidos"	TEXT,
+	"correo"	TEXT,
+	"contraseña"	TEXT,
+	"especialidad"	TEXT,
+	"cv"	TEXT,
+	"redes"	TEXT,
+	PRIMARY KEY("id")
+)
